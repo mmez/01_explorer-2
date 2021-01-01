@@ -41,8 +41,8 @@ let GO = 0
 GO = 0
 basic.forever(function () {
     if (GO > 0) {
-        Proxi.vorwärts()
-        if (Proxi.LBlock(600)) {
+        if (Proxi.LBlock(25)) {
+            Proxi.stehenbleiben()
             Proxi.linksdrehung()
             images.createImage(`
                 . . # . .
@@ -50,9 +50,10 @@ basic.forever(function () {
                 # # # # #
                 . . . # .
                 . . # . .
-                `).scrollImage(1, 100)
+                `).scrollImage(1, 50)
             Proxi.drehungsstopp()
-        } else if (Proxi.RBlock(400)) {
+        } else if (Proxi.RBlock(25)) {
+            Proxi.stehenbleiben()
             Proxi.rechtsdrehung()
             images.createImage(`
                 . . # . .
@@ -60,8 +61,8 @@ basic.forever(function () {
                 # # # # #
                 . # . . .
                 . . # . .
-                `).scrollImage(1, 100)
-            Proxi.stehenbleiben()
+                `).scrollImage(1, 50)
+            Proxi.drehungsstopp()
         }
         basic.showLeds(`
             . . . . .
@@ -70,7 +71,10 @@ basic.forever(function () {
             . . . . .
             . . . . .
             `)
+        Proxi.vorwärts()
     }
+    basic.showIcon(IconNames.Yes)
+    basic.showNumber(Proxi.Lese_LBlock())
     Proxi.drehungsstopp()
     Proxi.stehenbleiben()
 })
